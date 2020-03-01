@@ -29,13 +29,13 @@ export class HeroeComponent implements OnInit {
   ngOnInit() {
     // Logica para establecer id por heroe
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
+    //console.log(id);
     // Preguntar si es nuevo o tengo el id
     if ( id !== 'nuevo') {
 
       this.heroesService.getHeroe(id)
       .subscribe( (resp: HeroeModel) => {
-          console.log(resp);
+          //console.log(resp);
           this.heroe = resp;
           this.heroe.id = id;
       });

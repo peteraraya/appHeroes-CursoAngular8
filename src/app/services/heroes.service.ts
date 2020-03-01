@@ -25,7 +25,7 @@ export class HeroesService {
       ).pipe(
         map( (resp:any) => {
           heroe.id = resp.name;
-          return heroe
+          return heroe;
         })
       );
   }
@@ -71,7 +71,7 @@ private crearArreglo( heroesObj: Object){
 
   const heroes: HeroeModel[] = [];
 
-  console.log(heroesObj);
+  // console.log(heroesObj);
 
   // Validar si en la bd no tenemos ningun dato
   if ( heroesObj === null ){ return []; }
