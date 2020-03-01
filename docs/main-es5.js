@@ -628,7 +628,7 @@
                 function HeroesComponent(heroesService) {
                     this.heroesService = heroesService;
                     this.heroes = [];
-                    this.cargando = false;
+                    this.cargando = true;
                 }
                 HeroesComponent.prototype.ngOnInit = function () {
                     var _this = this;
@@ -698,7 +698,8 @@
                 }
                 HeroesService.prototype.crearHeroe = function (heroe) {
                     // Llame este metodo para retornar información a la pagina que llame este metodo de mi servicio
-                    return this.http.post(this.url + "/heroes.json", heroe).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (resp) {
+                    return this.http.post(this.url + "/heroes.json", heroe)
+                        .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (resp) {
                         heroe.id = resp.name;
                         return heroe;
                     }));
@@ -720,11 +721,10 @@
                     return this.http.get(this.url + "/heroes/" + id + ".json");
                 };
                 HeroesService.prototype.getHeroes = function () {
-                    // Mostrar toda información
-                    return this.http.get(this.url + "/eroes.jsonh")
+                    return this.http.get(this.url + "/heroes.json")
                         .pipe(
                     // operador map : transforma la infp y regresa cualquier otra COSA
-                    Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.crearArreglo), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(1500) // retrasa la carga
+                    Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.crearArreglo), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(0) // retrasa la carga
                     );
                 };
                 HeroesService.prototype.crearArreglo = function (heroesObj) {

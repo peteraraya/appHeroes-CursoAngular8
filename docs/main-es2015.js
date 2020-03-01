@@ -608,7 +608,7 @@ let HeroesComponent = class HeroesComponent {
     constructor(heroesService) {
         this.heroesService = heroesService;
         this.heroes = [];
-        this.cargando = false;
+        this.cargando = true;
     }
     ngOnInit() {
         // inicio cargando
@@ -683,7 +683,8 @@ let HeroesService = class HeroesService {
     }
     crearHeroe(heroe) {
         // Llame este metodo para retornar información a la pagina que llame este metodo de mi servicio
-        return this.http.post(`${this.url}/heroes.json`, heroe).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((resp) => {
+        return this.http.post(`${this.url}/heroes.json`, heroe)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((resp) => {
             heroe.id = resp.name;
             return heroe;
         }));
@@ -705,11 +706,10 @@ let HeroesService = class HeroesService {
         return this.http.get(`${this.url}/heroes/${id}.json`);
     }
     getHeroes() {
-        // Mostrar toda información
-        return this.http.get(`${this.url}/eroes.jsonh`)
+        return this.http.get(`${this.url}/heroes.json`)
             .pipe(
         // operador map : transforma la infp y regresa cualquier otra COSA
-        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.crearArreglo), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(1500) // retrasa la carga
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(this.crearArreglo), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["delay"])(0) // retrasa la carga
         );
     }
     crearArreglo(heroesObj) {

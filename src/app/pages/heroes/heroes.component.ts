@@ -12,7 +12,7 @@ export class HeroesComponent implements OnInit {
 
   heroes: HeroeModel[] = [];
 
-  cargando = false;
+  cargando = true;
 
 
   constructor( private heroesService : HeroesService) { }
@@ -24,7 +24,7 @@ export class HeroesComponent implements OnInit {
     // Llamo metodo para traer información de los heroes
     this.heroesService.getHeroes()
     .subscribe( resp =>{
-      this.heroes = resp
+      this.heroes = resp;
       // false el cargando
       this.cargando = false;
     });

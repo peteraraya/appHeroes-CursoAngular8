@@ -21,8 +21,8 @@ export class HeroesService {
   crearHeroe( heroe: HeroeModel){
     // Llame este metodo para retornar información a la pagina que llame este metodo de mi servicio
     return this.http.post(
-      `${this.url}/heroes.json`,heroe
-      ).pipe(
+      `${this.url}/heroes.json`,heroe)
+      .pipe(
         map( (resp:any) => {
           heroe.id = resp.name;
           return heroe;
@@ -53,17 +53,17 @@ export class HeroesService {
 
 
   // Obtener un heroe por id para traer los datos cargados
-  getHeroe(id:string){
-    return this.http.get(`${this.url}/heroes/${ id }.json`);
+  getHeroe(id: string) {
+
+    return this.http.get(`${this.url}/heroes/${id}.json`);
   }
 
-  getHeroes(){
-    // Mostrar toda información
-    return this.http.get(`${ this.url }/eroes.jsonh`)
+  getHeroes() {
+    return this.http.get(`${this.url}/heroes.json`)
     .pipe(
         // operador map : transforma la infp y regresa cualquier otra COSA
         map( this.crearArreglo ),
-         delay(1500) // retrasa la carga
+         delay(0) // retrasa la carga
     );
   }
 
